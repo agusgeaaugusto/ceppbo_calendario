@@ -2,7 +2,29 @@
 import { firebaseConfig } from './firebase-config.js';
 
 const EDIT_PIN = '123'; // cámbialo si quieres
+async function resizeImageToDataURL(file, maxW = 800, maxH = 800, quality = 0.8) {
+  const imgURL = URL.createObjectURL(file);
+  const img = await new Promise((res, rej) => {
+    const i = new Image();
+    i.onload = () => res(i);
+    i.onerror = rej;
+    i.src = imgURL;
+  });
 
+  let { width, height } = img;
+  const ratio = Math.min(maxW / width, maxH / height, 1); // no ampliar
+  const w = Math.round(width * ratio);
+  const h = Math.round(height * ratio);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, w, h);
+
+  URL.revokeObjectURL(imgURL);
+  // JPEG más liviano; si necesitas transparencia usa "image/png" (más pesado)
+  return canvas.toDataURL('image/jpeg', quality);
+}
 // DOM
 const grid = document.getElementById('grid');
 const mesActualEl = document.getElementById('mesActual');
