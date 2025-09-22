@@ -65,12 +65,22 @@
           </div>
           <div class="field">
             <label>Tipo</label>
-            <select id="tipo">
-              <option value="conmemorativa" selected>Conmemorativa</option>
-              <option value="acto">Acto/Evento</option>
-              <option value="feriado">Feriado</option>
-              <option value="otro">Otro</option>
-            </select>
+            <div class="filters">
+  <select id="filterTipo" aria-label="Filtrar por tipo">
+    <option value="all">Todos los tipos</option>
+    <option value="conmemorativa">Conmemorativa</option>
+    <option value="acto">Acto/Evento</option>
+    <option value="feriado">Feriado</option>
+    <option value="otro">Otro</option>
+  </select>
+
+  <input type="date" id="filterDesde" aria-label="Desde fecha">
+  <span>→</span>
+  <input type="date" id="filterHasta" aria-label="Hasta fecha">
+
+  <button class="btn ghost" id="filterClear" type="button">Limpiar</button>
+</div>
+
           </div>
         </div>
         <div class="field">
