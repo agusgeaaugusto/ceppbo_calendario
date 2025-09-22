@@ -92,4 +92,16 @@ dialog .form-actions{display:flex;justify-content:flex-end;gap:10px;padding:12px
   color: #fff;
   text-align: center;
 }
+/* Filtros */
+.filters{
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center; 
+  padding:10px 0; margin-top:8px;
+}
+.filters select,
+.filters input[type="date"]{
+  background:#1c1a22; color:#fff; border:1px solid rgba(255,255,255,.15);
+  border-radius:10px; padding:8px; font-size:14px;
+}
+.filters span{ color:var(--muted) }
+
 
