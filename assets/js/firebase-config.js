@@ -1,0 +1,1 @@
+export const firebaseConfig = { apiKey:'PEGA_AQUI', authDomain:'PEGA_AQUI.firebaseapp.com', projectId:'PEGA_AQUI', storageBucket:'PEGA_AQUI.appspot.com', messagingSenderId:'PEGA_AQUI', appId:'PEGA_AQUI' };
