@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calendario Académico — C.E.P.P.B.O.</title>
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/img/logo.png" class="logo" alt="Logo CEPPBO"/>
+      <div class="brand-text">
+        <h1>Calendario Académico</h1>
+        <p>C.E.P.P.B.O. — Compartido en tiempo real</p>
+      </div>
+    </div>
+    <nav class="actions">
+      <div class="month-nav">
+        <button id="prevMes" class="btn icon" aria-label="Mes anterior">&larr;</button>
+        <h2 id="mesActual" aria-live="polite"></h2>
+        <button id="nextMes" class="btn icon" aria-label="Mes siguiente">&rarr;</button>
+      </div>
+      <button id="btnHoy" class="btn ghost">Hoy</button>
+      <div class="status" title="Estado">
+        <span id="dot" class="dot offline"></span><span id="statustext">Desconectado</span>
+      </div>
+      <button id="toggleEdit" class="btn pin">🔒 Editar</button>
+      <button id="btnBorrarTodo" class="btn danger" disabled>Borrar todo</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="calendar">
+      <div class="week-head"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div>
+      <div id="grid" class="grid"></div>
+      <p class="hint">Modo lectura. Pulsa 🔒 Editar e ingresa el PIN para agregar/editar.</p>
+    </section>
+    <aside class="sidebar">
+      <div class="aside-header">
+        <h3>Fechas conmemorativas</h3>
+        <div class="legend">
+          <span class="pill pill-conm">Conmemorativa</span>
+          <span class="pill pill-acto">Acto/Evento</span>
+          <span class="pill pill-feriado">Feriado</span>
+          <span class="pill pill-otro">Otro</span>
+        </div>
+      </div>
+      <div id="cards" class="cards"></div>
+    </aside>
+  </main>
+
+  <dialog id="modal">
+    <form id="formEvento" method="dialog" novalidate>
+      <header>
+        <h3 id="modalTitle">Nueva fecha</h3>
+        <button type="button" class="icon close" id="closeModal" aria-label="Cerrar">&times;</button>
+      </header>
+      <div class="form-body">
+        <div class="row two">
+          <div class="field">
+            <label>Fecha</label>
+            <input type="date" id="fecha" required>
+          </div>
+          <div class="field">
+            <label>Tipo</label>
+            <select id="tipo">
+              <option value="conmemorativa" selected>Conmemorativa</option>
+              <option value="acto">Acto/Evento</option>
+              <option value="feriado">Feriado</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Título</label>
+          <input type="text" id="titulo" placeholder="Día del Maestro…" required>
+        </div>
+        <div class="field">
+          <label>Descripción (opcional)</label>
+          <textarea id="descripcion" rows="3" placeholder="Detalles…"></textarea>
+        </div>
+        <div class="row two">
+          <div class="field">
+            <label>Foto (opcional)</label>
+            <input type="file" id="foto" accept="image/*">
+          </div>
+          <div class="field">
+            <label>Color personalizado</label>
+            <input type="color" id="color">
+          </div>
+        </div>
+      </div>
+      <footer class="form-actions">
+        <button class="btn ghost" value="cancel">Cancelar</button>
+        <button class="btn" id="saveEvento" value="default">Guardar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <footer class="footer">
+    <small>&copy; <span id="year"></span> CEPPBO — Calendario compartido.</small>
+  </footer>
+
+  <script type="module" src="assets/js/firebase-config.js"></script>
+  <script type="module" src="assets/js/app-modelo-pin.js"></script>
+</body>
+</html>
